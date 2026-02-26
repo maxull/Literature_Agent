@@ -9,14 +9,9 @@
       "medrxiv",
       "sportRxiv"
     ],
-    "candidate_count": 0,
+    "candidate_count": 727,
     "summarized_count": 0,
-    "failures": [
-      "PubMed: Failed to resolve 'eutils.ncbi.nlm.nih.gov' ([Errno 8] nodename nor servname provided, or not known)",
-      "biorxiv: Failed to resolve 'api.biorxiv.org' ([Errno 8] nodename nor servname provided, or not known)",
-      "medrxiv: Failed to resolve 'api.biorxiv.org' ([Errno 8] nodename nor servname provided, or not known)",
-      "sportRxiv: Failed to resolve 'api.crossref.org' ([Errno 8] nodename nor servname provided, or not known)"
-    ]
+    "failures": []
   },
   "clusters": {},
   "highlights": [],
