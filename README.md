@@ -8,10 +8,10 @@ This repository does three things:
 Primary output file:
 - `reports/weekly_digests/weekly_muscle_digest_YYYY-MM-DD.json`
 
-## 1) One-Time Setup
+## 1) One-Time Setup (in terminal)
 
 ```bash
-cd "$(git rev-parse --show-toplevel)"
+cd "your path here (without quotation marks)"
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -e .
@@ -60,7 +60,7 @@ Add/remove terms in:
 ## 3) Generate Digest JSON (Local)
 
 ```bash
-cd "$(git rev-parse --show-toplevel)"
+cd "your path to repo"
 source .venv/bin/activate
 python run_weekly_digest.py --config config.yaml
 ```
@@ -107,7 +107,7 @@ python skills/muscle-digest-enricher/scripts/validate_digest_enrichment.py repor
 ## 6) Launch the Shiny App
 
 ```bash
-cd "$(git rev-parse --show-toplevel)"
+cd "your path to the repo"
 source .venv/bin/activate
 shiny run --reload shiny_app/app.py
 ```
