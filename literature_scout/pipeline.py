@@ -103,7 +103,7 @@ def run_digest(config: ScoutConfig) -> PipelineOutput:
     ranked = rank_papers(stage1, config)
     summary_cap = config.max_summaries_total if config.exhaustive_output else min(25, config.max_summaries_total)
     top_ranked, remainder = split_ranked(ranked, max_summaries=summary_cap)
-    summaries = summarize_ranked_papers(top_ranked)
+    summaries = summarize_ranked_papers(top_ranked, config=config, warnings=failures)
 
     if config.other_potential_limit > 0:
         remainder = remainder[: config.other_potential_limit]
@@ -144,6 +144,7 @@ def run_digest(config: ScoutConfig) -> PipelineOutput:
         ),
         "active_journal_tiers": config.active_journal_tiers,
         "exhaustive_output": config.exhaustive_output,
+        "use_llm_summaries": config.use_llm_summaries,
         "counts_by_source": counts_by_source,
         "candidate_count": len(deduped),
         "included_count": len(stage1),

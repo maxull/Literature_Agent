@@ -23,14 +23,18 @@ class ReportTests(unittest.TestCase):
             paper=paper,
             short_title="Skeletal muscle adaptation study",
             core_question="What controls adaptation in this model?",
-            key_findings=["Finding 1"],
-            mechanism=["Supported by causal evidence: pathway X -> Y"],
+            key_findings=["Finding 1 in narrative form."],
+            mechanism=["Supported by causal evidence: pathway X -> Y in muscle."],
             known_before=["Prior work suggested pathway X may regulate adaptation."],
             novel_value=["Adds value by testing pathway X with perturbation."],
             implications=["Potential translational relevance for muscle disease."],
             caveats=["Needs validation in independent cohorts."],
             relevance="Directly relevant to skeletal muscle homeostasis.",
             evidence_class="causal",
+            cluster="Mechanistic Signaling and Proteostasis",
+            methods_keywords=["Proteomics", "Insulin Sensitivity"],
+            key_visual_label="Source figure page",
+            key_visual_link="https://example.org/figure",
         )
 
         markdown = render_markdown(
@@ -47,10 +51,13 @@ class ReportTests(unittest.TestCase):
         self.assertIn("## Itinerary", markdown)
         self.assertIn("## Coverage", markdown)
         self.assertIn("## Highlights (Top 3-5)", markdown)
+        self.assertIn("## Thematic Clusters", markdown)
+        self.assertIn("## Methods Keyword Index", markdown)
         self.assertIn("## Paper Summaries", markdown)
         self.assertIn("## Abstracts (Full)", markdown)
         self.assertIn("5) What's new here (novel added value)", markdown)
         self.assertIn("7) Caveats / open questions", markdown)
+        self.assertIn("Key visual:", markdown)
 
 
 if __name__ == "__main__":

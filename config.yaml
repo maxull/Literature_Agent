@@ -5,6 +5,12 @@ include_general_pubmed: true
 exhaustive_output: true
 other_potential_limit: 300
 
+use_llm_summaries: true
+llm_model: gpt-4o-mini
+llm_api_base: https://api.openai.com/v1
+llm_temperature: 0.2
+llm_timeout_seconds: 45
+
 include_keywords:
   - skeletal muscle
   - myofiber
@@ -39,6 +45,25 @@ preferred_topics:
   - inflammation
   - extracellular matrix
   - neuromuscular junction
+
+methods_keywords:
+  - transcriptomics
+  - single-cell RNA-seq
+  - snRNA-seq
+  - spatial transcriptomics
+  - proteomics
+  - spatial proteomics
+  - phosphoproteomics
+  - metabolomics
+  - epigenomics
+  - ATAC-seq
+  - scATAC-seq
+  - CRISPR screens
+  - lineage tracing
+  - insulin sensitivity
+  - hyperinsulinemic-euglycemic clamp
+  - glucose tolerance test
+  - mitochondrial respiration
 
 include_reviews: true
 include_arxiv: false
@@ -146,7 +171,7 @@ journal_tiers:
     - "JAMA Network Open"
     - "Orphanet Journal of Rare Diseases"
 
-output_dir: .
+output_dir: reports/weekly_digests
 state_seen_file: state_seen.json
 run_log_file: run_log.json
 request_timeout_seconds: 25
