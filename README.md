@@ -11,7 +11,7 @@ Primary output file:
 ## 1) One-Time Setup
 
 ```bash
-cd /Users/maxullrich/Documents/GitHub/Literature_Agent
+cd "$(git rev-parse --show-toplevel)"
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -e .
@@ -20,7 +20,7 @@ pip install -e .
 ## 2) Configure the Search
 
 Edit:
-- `/Users/maxullrich/Documents/GitHub/Literature_Agent/config.yaml`
+- `config.yaml`
 
 Important knobs:
 - `days_back`: how far back to search (default 7)
@@ -60,7 +60,7 @@ Add/remove terms in:
 ## 3) Generate Digest JSON (Local)
 
 ```bash
-cd /Users/maxullrich/Documents/GitHub/Literature_Agent
+cd "$(git rev-parse --show-toplevel)"
 source .venv/bin/activate
 python run_weekly_digest.py --config config.yaml
 ```
@@ -71,21 +71,21 @@ This writes/updates:
 ## 4) Enrich Summaries with Codex Skill (No API Required)
 
 Skill path:
-- `/Users/maxullrich/Documents/GitHub/Literature_Agent/skills/muscle-digest-enricher/SKILL.md`
+- `skills/muscle-digest-enricher/SKILL.md`
 
 In Codex chat, paste this prompt:
 
 ```text
-Use /Users/maxullrich/Documents/GitHub/Literature_Agent/skills/muscle-digest-enricher/SKILL.md as the active instructions for this task.
+Use skills/muscle-digest-enricher/SKILL.md as the active instructions for this task.
 
-Find the latest digest JSON in /Users/maxullrich/Documents/GitHub/Literature_Agent/reports/weekly_digests/.
+Find the latest digest JSON in reports/weekly_digests/.
 Edit that JSON in place:
 - Rewrite every clusters.<cluster>.chapter_summary in chapter-style prose anchored to the AMPK example style/length.
 - Rewrite every papers[*].discussion_summary in the same style.
 - Preserve all fields and keep DOI-first links (doi_url must be https://doi.org/<doi> when doi exists).
 
 After editing, run:
-python /Users/maxullrich/Documents/GitHub/Literature_Agent/skills/muscle-digest-enricher/scripts/validate_digest_enrichment.py <path-to-json>
+python skills/muscle-digest-enricher/scripts/validate_digest_enrichment.py <path-to-json>
 
 If validation fails, fix and rerun until it passes.
 ```
@@ -95,21 +95,21 @@ If validation fails, fix and rerun until it passes.
 Locate latest digest:
 
 ```bash
-python /Users/maxullrich/Documents/GitHub/Literature_Agent/skills/muscle-digest-enricher/scripts/locate_latest_digest.py
+python skills/muscle-digest-enricher/scripts/locate_latest_digest.py
 ```
 
 Validate:
 
 ```bash
-python /Users/maxullrich/Documents/GitHub/Literature_Agent/skills/muscle-digest-enricher/scripts/validate_digest_enrichment.py /Users/maxullrich/Documents/GitHub/Literature_Agent/reports/weekly_digests/weekly_muscle_digest_YYYY-MM-DD.json
+python skills/muscle-digest-enricher/scripts/validate_digest_enrichment.py reports/weekly_digests/weekly_muscle_digest_YYYY-MM-DD.json
 ```
 
 ## 6) Launch the Shiny App
 
 ```bash
-cd /Users/maxullrich/Documents/GitHub/Literature_Agent
+cd "$(git rev-parse --show-toplevel)"
 source .venv/bin/activate
-shiny run --reload /Users/maxullrich/Documents/GitHub/Literature_Agent/shiny_app/app.py
+shiny run --reload shiny_app/app.py
 ```
 
 Open:
@@ -121,7 +121,7 @@ Stop app:
 ## 7) Optional: Run via GitHub Actions
 
 Workflow file:
-- `/Users/maxullrich/Documents/GitHub/Literature_Agent/.github/workflows/run_digest.yml`
+- `.github/workflows/run_digest.yml`
 
 Steps:
 1. GitHub -> Actions -> `Run Muscle Digest`
@@ -137,11 +137,11 @@ git pull
 ## 8) Typical End-to-End Local Commands
 
 ```bash
-cd /Users/maxullrich/Documents/GitHub/Literature_Agent
+cd "$(git rev-parse --show-toplevel)"
 source .venv/bin/activate
 python run_weekly_digest.py --config config.yaml
 python skills/muscle-digest-enricher/scripts/locate_latest_digest.py
 # Use Codex skill prompt to rewrite summaries here
-python skills/muscle-digest-enricher/scripts/validate_digest_enrichment.py /Users/maxullrich/Documents/GitHub/Literature_Agent/reports/weekly_digests/weekly_muscle_digest_YYYY-MM-DD.json
-shiny run --reload /Users/maxullrich/Documents/GitHub/Literature_Agent/shiny_app/app.py
+python skills/muscle-digest-enricher/scripts/validate_digest_enrichment.py reports/weekly_digests/weekly_muscle_digest_YYYY-MM-DD.json
+shiny run --reload shiny_app/app.py
 ```

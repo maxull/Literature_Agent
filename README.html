@@ -361,7 +361,7 @@ workflow. 3. Serves an interactive Shiny app for exploration.</p>
 <code>reports/weekly_digests/weekly_muscle_digest_YYYY-MM-DD.json</code></p>
 <div id="one-time-setup" class="section level2">
 <h2>1) One-Time Setup</h2>
-<pre class="bash"><code>cd /Users/maxullrich/Documents/GitHub/Literature_Agent
+<pre class="bash"><code>cd "$(git rev-parse --show-toplevel)"
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -e .</code></pre>
@@ -369,7 +369,7 @@ pip install -e .</code></pre>
 <div id="configure-the-search" class="section level2">
 <h2>2) Configure the Search</h2>
 <p>Edit: -
-<code>/Users/maxullrich/Documents/GitHub/Literature_Agent/config.yaml</code></p>
+<code>config.yaml</code></p>
 <p>Important knobs: - <code>days_back</code>: how far back to search
 (default 7) - <code>max_candidates_per_source</code>: retrieval cap per
 source - <code>max_summaries_total</code>: summary cap; use
@@ -397,7 +397,7 @@ used</p>
 </div>
 <div id="generate-digest-json-local" class="section level2">
 <h2>3) Generate Digest JSON (Local)</h2>
-<pre class="bash"><code>cd /Users/maxullrich/Documents/GitHub/Literature_Agent
+<pre class="bash"><code>cd "$(git rev-parse --show-toplevel)"
 source .venv/bin/activate
 python run_weekly_digest.py --config config.yaml</code></pre>
 <p>This writes/updates: -
@@ -406,40 +406,40 @@ python run_weekly_digest.py --config config.yaml</code></pre>
 <div id="enrich-summaries-with-codex-skill-no-api-required" class="section level2">
 <h2>4) Enrich Summaries with Codex Skill (No API Required)</h2>
 <p>Skill path: -
-<code>/Users/maxullrich/Documents/GitHub/Literature_Agent/skills/muscle-digest-enricher/SKILL.md</code></p>
+<code>skills/muscle-digest-enricher/SKILL.md</code></p>
 <p>In Codex chat, paste this prompt:</p>
-<pre class="text"><code>Use /Users/maxullrich/Documents/GitHub/Literature_Agent/skills/muscle-digest-enricher/SKILL.md as the active instructions for this task.
+<pre class="text"><code>Use skills/muscle-digest-enricher/SKILL.md as the active instructions for this task.
 
-Find the latest digest JSON in /Users/maxullrich/Documents/GitHub/Literature_Agent/reports/weekly_digests/.
+Find the latest digest JSON in reports/weekly_digests/.
 Edit that JSON in place:
 - Rewrite every clusters.&lt;cluster&gt;.chapter_summary in chapter-style prose anchored to the AMPK example style/length.
 - Rewrite every papers[*].discussion_summary in the same style.
 - Preserve all fields and keep DOI-first links (doi_url must be https://doi.org/&lt;doi&gt; when doi exists).
 
 After editing, run:
-python /Users/maxullrich/Documents/GitHub/Literature_Agent/skills/muscle-digest-enricher/scripts/validate_digest_enrichment.py &lt;path-to-json&gt;
+python skills/muscle-digest-enricher/scripts/validate_digest_enrichment.py &lt;path-to-json&gt;
 
 If validation fails, fix and rerun until it passes.</code></pre>
 </div>
 <div id="validate-enriched-digest" class="section level2">
 <h2>5) Validate Enriched Digest</h2>
 <p>Locate latest digest:</p>
-<pre class="bash"><code>python /Users/maxullrich/Documents/GitHub/Literature_Agent/skills/muscle-digest-enricher/scripts/locate_latest_digest.py</code></pre>
+<pre class="bash"><code>python skills/muscle-digest-enricher/scripts/locate_latest_digest.py</code></pre>
 <p>Validate:</p>
-<pre class="bash"><code>python /Users/maxullrich/Documents/GitHub/Literature_Agent/skills/muscle-digest-enricher/scripts/validate_digest_enrichment.py /Users/maxullrich/Documents/GitHub/Literature_Agent/reports/weekly_digests/weekly_muscle_digest_YYYY-MM-DD.json</code></pre>
+<pre class="bash"><code>python skills/muscle-digest-enricher/scripts/validate_digest_enrichment.py reports/weekly_digests/weekly_muscle_digest_YYYY-MM-DD.json</code></pre>
 </div>
 <div id="launch-the-shiny-app" class="section level2">
 <h2>6) Launch the Shiny App</h2>
-<pre class="bash"><code>cd /Users/maxullrich/Documents/GitHub/Literature_Agent
+<pre class="bash"><code>cd "$(git rev-parse --show-toplevel)"
 source .venv/bin/activate
-shiny run --reload /Users/maxullrich/Documents/GitHub/Literature_Agent/shiny_app/app.py</code></pre>
+shiny run --reload shiny_app/app.py</code></pre>
 <p>Open: - <code>http://127.0.0.1:8000</code></p>
 <p>Stop app: - <code>Ctrl + C</code> in the terminal running Shiny.</p>
 </div>
 <div id="optional-run-via-github-actions" class="section level2">
 <h2>7) Optional: Run via GitHub Actions</h2>
 <p>Workflow file: -
-<code>/Users/maxullrich/Documents/GitHub/Literature_Agent/.github/workflows/run_digest.yml</code></p>
+<code>.github/workflows/run_digest.yml</code></p>
 <p>Steps: 1. GitHub -&gt; Actions -&gt; <code>Run Muscle Digest</code>
 2. Click <code>Run workflow</code> 3. Set <code>days_back</code> if
 needed (e.g., 14 or 30) 4. Run 5. Pull local updates:</p>
@@ -447,13 +447,13 @@ needed (e.g., 14 or 30) 4. Run 5. Pull local updates:</p>
 </div>
 <div id="typical-end-to-end-local-commands" class="section level2">
 <h2>8) Typical End-to-End Local Commands</h2>
-<pre class="bash"><code>cd /Users/maxullrich/Documents/GitHub/Literature_Agent
+<pre class="bash"><code>cd "$(git rev-parse --show-toplevel)"
 source .venv/bin/activate
 python run_weekly_digest.py --config config.yaml
 python skills/muscle-digest-enricher/scripts/locate_latest_digest.py
 # Use Codex skill prompt to rewrite summaries here
-python skills/muscle-digest-enricher/scripts/validate_digest_enrichment.py /Users/maxullrich/Documents/GitHub/Literature_Agent/reports/weekly_digests/weekly_muscle_digest_YYYY-MM-DD.json
-shiny run --reload /Users/maxullrich/Documents/GitHub/Literature_Agent/shiny_app/app.py</code></pre>
+python skills/muscle-digest-enricher/scripts/validate_digest_enrichment.py reports/weekly_digests/weekly_muscle_digest_YYYY-MM-DD.json
+shiny run --reload shiny_app/app.py</code></pre>
 </div>
 </div>
 
