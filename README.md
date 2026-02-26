@@ -11,7 +11,7 @@ Primary output file:
 ## 1) One-Time Setup
 
 ```bash
-cd "$(git rev-parse --show-toplevel)"
+cd "your path here (without quotation marks)"
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -e .
