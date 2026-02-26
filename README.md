@@ -8,7 +8,7 @@ This repository does three things:
 Primary output file:
 - `reports/weekly_digests/weekly_muscle_digest_YYYY-MM-DD.json`
 
-## 1) One-Time Setup
+## 1) One-Time Setup (in terminal)
 
 ```bash
 cd "your path here (without quotation marks)"
