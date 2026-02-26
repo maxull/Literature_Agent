@@ -1,6 +1,10 @@
 days_back: 7
-max_candidates_per_source: 120
-max_summaries_total: 20
+max_candidates_per_source: 300
+max_summaries_total: 100
+include_general_pubmed: true
+exhaustive_output: true
+other_potential_limit: 300
+
 include_keywords:
   - skeletal muscle
   - myofiber
@@ -19,11 +23,12 @@ include_keywords:
   - neuromuscular junction
   - sarcopenia
   - cachexia
+
 exclude_keywords:
-  - coaching intervention
-  - biomechanical modeling only
   - sports psychology
   - orthopedic fixation
+  - biomechanical modeling only
+
 preferred_topics:
   - satellite cells
   - regeneration
@@ -34,8 +39,113 @@ preferred_topics:
   - inflammation
   - extracellular matrix
   - neuromuscular junction
+
 include_reviews: true
 include_arxiv: false
+
+active_journal_tiers:
+  - tier_1
+  - tier_2
+  - tier_3
+
+journal_tier_weights:
+  tier_1: 3.2
+  tier_2: 1.8
+  tier_3: 0.9
+
+journal_tiers:
+  tier_1:
+    - "Skeletal Muscle"
+    - "Journal of Physiology"
+    - "Journal of Applied Physiology"
+    - "American Journal of Physiology-Cell Physiology"
+    - "American Journal of Physiology-Endocrinology and Metabolism"
+    - "Journal of Cachexia, Sarcopenia and Muscle"
+    - "Cell Metabolism"
+    - "Nature Metabolism"
+    - "Journal of Clinical Investigation"
+    - "Diabetes"
+    - "Diabetologia"
+    - "Developmental Cell"
+    - "Cell Stem Cell"
+    - "Nature Cell Biology"
+    - "Nature Communications"
+    - "Science Advances"
+    - "Proceedings of the National Academy of Sciences of the United States of America"
+    - "Autophagy"
+    - "Aging Cell"
+    - "Matrix Biology"
+
+  tier_2:
+    - "Cell"
+    - "Nature"
+    - "Science"
+    - "Nature Medicine"
+    - "Nature Aging"
+    - "Nature Genetics"
+    - "Molecular Cell"
+    - "Genes & Development"
+    - "Immunity"
+    - "Nature Immunology"
+    - "Journal of Experimental Medicine"
+    - "Journal of Immunology"
+    - "Science Immunology"
+    - "Cell Host & Microbe"
+    - "Circulation Research"
+    - "Development"
+    - "Science Translational Medicine"
+    - "Nature Biotechnology"
+    - "Nature Methods"
+    - "Genome Biology"
+    - "Genome Research"
+    - "Cell Systems"
+    - "Patterns"
+    - "PLoS Computational Biology"
+    - "Nucleic Acids Research"
+    - "Redox Biology"
+    - "Free Radical Biology and Medicine"
+    - "Mitochondrion"
+    - "Cell Death and Differentiation"
+    - "FASEB Journal"
+    - "Acta Physiologica"
+    - "Experimental Physiology"
+    - "Muscle & Nerve"
+    - "Neuromuscular Disorders"
+    - "Journal of Cell Biology"
+    - "Cell Reports"
+
+  tier_3:
+    - "Medicine and Science in Sports and Exercise"
+    - "European Journal of Applied Physiology"
+    - "Physiological Reports"
+    - "Frontiers in Physiology"
+    - "American Journal of Physiology-Regulatory, Integrative and Comparative Physiology"
+    - "Stem Cell Reports"
+    - "EMBO Journal"
+    - "EMBO Reports"
+    - "eLife"
+    - "Aging"
+    - "GeroScience"
+    - "Journals of Gerontology. Series A, Biological Sciences and Medical Sciences"
+    - "Journal of Endocrinology"
+    - "Endocrinology"
+    - "Endocrine Reviews"
+    - "Trends in Endocrinology and Metabolism"
+    - "Trends in Cell Biology"
+    - "Journal of Extracellular Matrix Biology"
+    - "Metabolism"
+    - "Diabetes Care"
+    - "The American Journal of Clinical Nutrition"
+    - "Nature Reviews Immunology"
+    - "The Lancet Diabetes & Endocrinology"
+    - "Annals of Internal Medicine"
+    - "New England Journal of Medicine"
+    - "Clinical Science"
+    - "Clinical Nutrition"
+    - "British Journal of Sports Medicine"
+    - "JAMA Network Open"
+    - "Orphanet Journal of Rare Diseases"
+
 output_dir: .
 state_seen_file: state_seen.json
 run_log_file: run_log.json

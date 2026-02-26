@@ -71,7 +71,13 @@ def run_digest(config: ScoutConfig) -> PipelineOutput:
         retry_attempts=config.retry_attempts,
     )
     clients = [
-        PubMedClient(http=http),
+        PubMedClient(
+            http=http,
+            extra_keywords=config.include_keywords,
+            journal_tiers=config.journal_tiers,
+            active_tiers=config.active_journal_tiers,
+            include_general_query=config.include_general_pubmed,
+        ),
         RxivClient(http=http, server="biorxiv"),
         RxivClient(http=http, server="medrxiv"),
         SportRxivClient(http=http),
@@ -95,8 +101,14 @@ def run_digest(config: ScoutConfig) -> PipelineOutput:
 
     stage1 = stage1_relevance_filter(unseen, config)
     ranked = rank_papers(stage1, config)
-    top_ranked, remainder = split_ranked(ranked, max_summaries=config.max_summaries_total)
+    summary_cap = config.max_summaries_total if config.exhaustive_output else min(25, config.max_summaries_total)
+    top_ranked, remainder = split_ranked(ranked, max_summaries=summary_cap)
     summaries = summarize_ranked_papers(top_ranked)
+
+    if config.other_potential_limit > 0:
+        remainder = remainder[: config.other_potential_limit]
+    elif config.other_potential_limit == 0:
+        remainder = []
 
     quality_issues = _quality_checks(summaries)
     if quality_issues:
@@ -125,7 +137,13 @@ def run_digest(config: ScoutConfig) -> PipelineOutput:
         "timestamp_utc": datetime.utcnow().isoformat(timespec="seconds") + "Z",
         "window_start": start_date.isoformat(),
         "window_end": end_date.isoformat(),
-        "query_set_hash": query_set_hash(config.include_keywords),
+        "query_set_hash": query_set_hash(
+            extra_keywords=config.include_keywords,
+            journal_tiers=config.journal_tiers,
+            active_tiers=config.active_journal_tiers,
+        ),
+        "active_journal_tiers": config.active_journal_tiers,
+        "exhaustive_output": config.exhaustive_output,
         "counts_by_source": counts_by_source,
         "candidate_count": len(deduped),
         "included_count": len(stage1),

@@ -7,13 +7,14 @@ This project runs a weekly literature scan across peer-reviewed and preprint sou
 ## What It Does
 
 - Searches every run:
-  - `PubMed`
+  - `PubMed` (broad query + journal-tier watchlist query)
   - `bioRxiv`
   - `medRxiv`
   - `sportRxiv` (via Crossref index)
+  - Optional `arXiv`
 - Applies two-stage relevance:
   - Stage 1 rule-based include/exclude
-  - Stage 2 weighted ranking
+  - Stage 2 weighted ranking (mechanistic depth, novelty, translational relevance, technical innovation, journal tier)
 - Produces required sections:
   - Itinerary
   - Coverage
@@ -23,6 +24,16 @@ This project runs a weekly literature scan across peer-reviewed and preprint sou
 - Maintains state:
   - `state_seen.json`
   - `run_log.json`
+
+## Journal Tiers
+
+The search/ranking is configurable via `config.yaml`:
+
+- `journal_tiers.tier_1`: always prioritized core skeletal-muscle and high-signal journals.
+- `journal_tiers.tier_2`: broad high-impact and adjacent mechanistic venues.
+- `journal_tiers.tier_3`: optional/watchlist journals where relevance can be inconsistent.
+- `active_journal_tiers`: choose which tiers are actively queried.
+- `journal_tier_weights`: rank boost per tier.
 
 ## Quick Start
 
@@ -42,13 +53,16 @@ pip install -e .
 python run_weekly_digest.py --config config.yaml
 ```
 
-## Weekly Automation Example
+## GitHub Actions (Manual Run)
 
-Run every Monday at 08:00 local time:
+This repo includes [`run_digest.yml`](/Users/maxullrich/Documents/GitHub/Literature_Agent/.github/workflows/run_digest.yml).
 
-```bash
-0 8 * * 1 cd /Users/maxullrich/Documents/GitHub/Literature_Agent && /usr/bin/python3 run_weekly_digest.py --config config.yaml
-```
+To run once:
+1. Open your repo on GitHub.
+2. Go to `Actions` -> `Run Muscle Digest`.
+3. Click `Run workflow`.
+4. Optionally set `days_back`.
+5. Download the `weekly-muscle-digest` artifact from the completed run.
 
 ## Notes
 

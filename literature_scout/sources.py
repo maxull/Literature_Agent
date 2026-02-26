@@ -113,31 +113,118 @@ class PubMedClient(BaseSourceClient):
     esearch_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
     efetch_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
 
-    def fetch(self, start_date: date, end_date: date, max_results: int) -> SourceFetchResult:
-        try:
-            query = build_pubmed_query()
-            search_params = {
-                "db": "pubmed",
-                "retmode": "json",
-                "retmax": str(max_results),
-                "sort": "pub date",
-                "datetype": "pdat",
-                "mindate": start_date.isoformat(),
-                "maxdate": end_date.isoformat(),
-                "term": query,
-            }
-            search_response = self._get(self.esearch_url, params=search_params).json()
-            id_list = search_response.get("esearchresult", {}).get("idlist", [])
-            if not id_list:
-                return SourceFetchResult(source_name=self.source_name, papers=[])
+    def __init__(
+        self,
+        http: HTTPConfig,
+        extra_keywords: list[str] | None = None,
+        journal_tiers: dict[str, list[str]] | None = None,
+        active_tiers: list[str] | None = None,
+        include_general_query: bool = True,
+    ) -> None:
+        super().__init__(http)
+        self.extra_keywords = list(extra_keywords or [])
+        self.journal_tiers = {tier: list(values) for tier, values in (journal_tiers or {}).items()}
+        self.active_tiers = list(active_tiers or [])
+        self.include_general_query = include_general_query
 
+    def _append_unique_ids(
+        self, id_list: list[str], ordered_ids: list[str], seen: set[str]
+    ) -> None:
+        for pmid in id_list:
+            if pmid in seen:
+                continue
+            seen.add(pmid)
+            ordered_ids.append(pmid)
+
+    def _esearch_ids(
+        self,
+        query: str,
+        start_date: date,
+        end_date: date,
+        max_results: int,
+    ) -> list[str]:
+        search_params = {
+            "db": "pubmed",
+            "retmode": "json",
+            "retmax": str(max_results),
+            "sort": "pub date",
+            "datetype": "pdat",
+            "mindate": start_date.isoformat(),
+            "maxdate": end_date.isoformat(),
+            "term": query,
+        }
+        payload = self._get(self.esearch_url, params=search_params).json()
+        return payload.get("esearchresult", {}).get("idlist", [])
+
+    def _journal_watchlist(self) -> list[str]:
+        tiers = self.active_tiers or sorted(self.journal_tiers)
+        ordered: list[str] = []
+        seen: set[str] = set()
+        for tier in tiers:
+            for journal in self.journal_tiers.get(tier, []):
+                normalized = journal.strip()
+                if not normalized:
+                    continue
+                key = normalized.lower()
+                if key in seen:
+                    continue
+                seen.add(key)
+                ordered.append(normalized)
+        return ordered
+
+    def _fetch_records(self, pmids: list[str]) -> list[Paper]:
+        papers: list[Paper] = []
+        batch_size = 200
+        for offset in range(0, len(pmids), batch_size):
+            batch = pmids[offset : offset + batch_size]
             fetch_params = {
                 "db": "pubmed",
-                "id": ",".join(id_list),
+                "id": ",".join(batch),
                 "retmode": "xml",
             }
             fetch_xml = self._get(self.efetch_url, params=fetch_params).text
-            papers = self._parse_pubmed_xml(fetch_xml)
+            papers.extend(self._parse_pubmed_xml(fetch_xml))
+        return papers
+
+    def fetch(self, start_date: date, end_date: date, max_results: int) -> SourceFetchResult:
+        try:
+            ordered_ids: list[str] = []
+            seen_ids: set[str] = set()
+
+            if self.include_general_query:
+                query = build_pubmed_query(extra_keywords=self.extra_keywords)
+                id_list = self._esearch_ids(
+                    query=query,
+                    start_date=start_date,
+                    end_date=end_date,
+                    max_results=max_results,
+                )
+                self._append_unique_ids(id_list=id_list, ordered_ids=ordered_ids, seen=seen_ids)
+
+            journal_watchlist = self._journal_watchlist()
+            if journal_watchlist:
+                chunk_size = 15
+                max_target_ids = max_results * 4
+                for offset in range(0, len(journal_watchlist), chunk_size):
+                    chunk = journal_watchlist[offset : offset + chunk_size]
+                    query = build_pubmed_query(
+                        extra_keywords=self.extra_keywords,
+                        journal_filters=chunk,
+                    )
+                    id_list = self._esearch_ids(
+                        query=query,
+                        start_date=start_date,
+                        end_date=end_date,
+                        max_results=max_results,
+                    )
+                    self._append_unique_ids(id_list=id_list, ordered_ids=ordered_ids, seen=seen_ids)
+                    if len(ordered_ids) >= max_target_ids:
+                        break
+
+            if not ordered_ids:
+                return SourceFetchResult(source_name=self.source_name, papers=[])
+
+            papers = self._fetch_records(ordered_ids)
             return SourceFetchResult(source_name=self.source_name, papers=papers)
         except Exception as exc:  # noqa: BLE001
             return SourceFetchResult(source_name=self.source_name, papers=[], failure=_compact_error(exc))

@@ -72,6 +72,33 @@ class FilteringTests(unittest.TestCase):
         ranked = rank_papers([associative, mechanistic], DEFAULT_CONFIG)
         self.assertEqual(ranked[0].paper.doi, "10.1234/mech")
 
+    def test_ranking_boosts_tier_1_journal(self) -> None:
+        tier_1 = Paper(
+            title="Skeletal muscle fiber signaling study",
+            authors=["Tier One"],
+            abstract="Mouse skeletal muscle knockout and lineage tracing identify pathway control.",
+            source="PubMed",
+            source_type="peer-reviewed",
+            venue="Cell Metabolism",
+            published_date=date(2026, 2, 18),
+            year=2026,
+            doi="10.1234/tier1",
+        )
+        tier_3 = Paper(
+            title="Skeletal muscle fiber signaling study",
+            authors=["Tier Three"],
+            abstract="Mouse skeletal muscle knockout and lineage tracing identify pathway control.",
+            source="PubMed",
+            source_type="peer-reviewed",
+            venue="Physiological Reports",
+            published_date=date(2026, 2, 18),
+            year=2026,
+            doi="10.1234/tier3",
+        )
+
+        ranked = rank_papers([tier_3, tier_1], DEFAULT_CONFIG)
+        self.assertEqual(ranked[0].paper.doi, "10.1234/tier1")
+
 
 if __name__ == "__main__":
     unittest.main()

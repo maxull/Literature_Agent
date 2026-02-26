@@ -69,6 +69,28 @@ CORRELATIVE_TERMS = {
 }
 
 
+def _journal_key(text: str) -> str:
+    normalized = text.lower().replace("&", "and")
+    normalized = re.sub(r"[^a-z0-9]+", " ", normalized)
+    return re.sub(r"\s+", " ", normalized).strip()
+
+
+def _journal_tier_for_paper(paper: Paper, config: ScoutConfig) -> str | None:
+    venue_key = _journal_key(paper.venue)
+    if not venue_key:
+        return None
+
+    for tier in config.active_journal_tiers:
+        journals = config.journal_tiers.get(tier, [])
+        for journal in journals:
+            journal_key = _journal_key(journal)
+            if not journal_key:
+                continue
+            if journal_key in venue_key or venue_key in journal_key:
+                return tier
+    return None
+
+
 def _normalized_text(paper: Paper) -> str:
     return re.sub(r"\s+", " ", f"{paper.title} {paper.abstract}".lower())
 
@@ -174,6 +196,12 @@ def rank_papers(candidates: list[Paper], config: ScoutConfig) -> list[RankedPape
 
         if paper.source_type == "peer-reviewed":
             score += 0.6
+
+        journal_tier = _journal_tier_for_paper(paper, config)
+        if journal_tier:
+            tier_weight = config.journal_tier_weights.get(journal_tier, 0.0)
+            score += tier_weight
+            reasons.append(f"{journal_tier} journal")
 
         ranked.append(RankedPaper(paper=paper, score=score, reasons=sorted(set(reasons))))
 
