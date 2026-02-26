@@ -1,0 +1,43 @@
+days_back: 7
+max_candidates_per_source: 120
+max_summaries_total: 20
+include_keywords:
+  - skeletal muscle
+  - myofiber
+  - myonuclei
+  - satellite cell
+  - myogenesis
+  - regeneration
+  - hypertrophy
+  - atrophy
+  - unloading
+  - exercise adaptation
+  - proteostasis
+  - autophagy
+  - ubiquitin proteasome
+  - mitochondria
+  - neuromuscular junction
+  - sarcopenia
+  - cachexia
+exclude_keywords:
+  - coaching intervention
+  - biomechanical modeling only
+  - sports psychology
+  - orthopedic fixation
+preferred_topics:
+  - satellite cells
+  - regeneration
+  - aging
+  - sarcopenia
+  - cachexia
+  - insulin sensitivity
+  - inflammation
+  - extracellular matrix
+  - neuromuscular junction
+include_reviews: true
+include_arxiv: false
+output_dir: .
+state_seen_file: state_seen.json
+run_log_file: run_log.json
+request_timeout_seconds: 25
+retry_attempts: 3

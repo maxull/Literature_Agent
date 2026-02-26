@@ -1,0 +1,88 @@
+{
+  "runs": [
+    {
+      "timestamp_utc": "2026-02-26T11:11:59Z",
+      "window_start": "2026-02-20",
+      "window_end": "2026-02-26",
+      "query_set_hash": "04d30339fdad072a76289c310f241e866509a38da3842bf33aeed69b079fce53",
+      "counts_by_source": {
+        "PubMed": 0,
+        "biorxiv": 0,
+        "medrxiv": 0,
+        "sportRxiv": 0
+      },
+      "candidate_count": 0,
+      "included_count": 0,
+      "summarized_count": 0,
+      "failures": [
+        "PubMed: HTTPSConnectionPool(host='eutils.ncbi.nlm.nih.gov', port=443): Max retries exceeded with url: /entrez/eutils/esearch.fcgi?db=pubmed&retmode=json&retmax=120&sort=pub+date&datetype=pdat&mindate=2026-02-20&maxdate=2026-02-26&term=%28%22skeletal+muscle%22%5BTitle%2FAbstract%5D+OR+%22myofiber%22%5BTitle%2FAbstract%5D+OR+%22myonuclei%22%5BTitle%2FAbstract%5D+OR+%22satellite+cell%22%5BTitle%2FAbstract%5D+OR+%22myogenesis%22%5BTitle%2FAbstract%5D+OR+%22muscle+regeneration%22%5BTitle%2FAbstract%5D+OR+%22hypertrophy%22%5BTitle%2FAbstract%5D+OR+%22atrophy%22%5BTitle%2FAbstract%5D+OR+%22unloading%22%5BTitle%2FAbstract%5D+OR+%22exercise+adaptation%22%5BTitle%2FAbstract%5D+OR+%22endurance+training%22%5BTitle%2FAbstract%5D+OR+%22resistance+training%22%5BTitle%2FAbstract%5D+OR+%22proteostasis%22%5BTitle%2FAbstract%5D+OR+%22autophagy%22%5BTitle%2FAbstract%5D+OR+%22ubiquitin+proteasome%22%5BTitle%2FAbstract%5D+OR+%22mitochondria%22%5BTitle%2FAbstract%5D+OR+%22ER+stress%22%5BTitle%2FAbstract%5D+OR+%22oxidative+stress%22%5BTitle%2FAbstract%5D+OR+%22insulin+sensitivity%22%5BTitle%2FAbstract%5D+OR+%22lipid+handling%22%5BTitle%2FAbstract%5D+OR+%22glycogen%22%5BTitle%2FAbstract%5D+OR+%22NAD%2B%22%5BTitle%2FAbstract%5D+OR+%22sirtuin%22%5BTitle%2FAbstract%5D+OR+%22inflammation%22%5BTitle%2FAbstract%5D+OR+%22macrophage%22%5BTitle%2FAbstract%5D+OR+%22myokine%22%5BTitle%2FAbstract%5D+OR+%22extracellular+matrix%22%5BTitle%2FAbstract%5D+OR+%22fibrosis%22%5BTitle%2FAbstract%5D+OR+%22angiogenesis%22%5BTitle%2FAbstract%5D+OR+%22neuromuscular+junction%22%5BTitle%2FAbstract%5D+OR+%22motor+neuron%22%5BTitle%2FAbstract%5D+OR+%22aging%22%5BTitle%2FAbstract%5D+OR+%22sarcopenia%22%5BTitle%2FAbstract%5D+OR+%22cachexia%22%5BTitle%2FAbstract%5D+OR+%22muscular+dystrophy%22%5BTitle%2FAbstract%5D+OR+%22myopathy%22%5BTitle%2FAbstract%5D+OR+%22type+2+diabetes%22%5BTitle%2FAbstract%5D+OR+%22obesity%22%5BTitle%2FAbstract%5D+OR+%22muscle+adipose%22%5BTitle%2FAbstract%5D+OR+%22muscle+liver%22%5BTitle%2FAbstract%5D+OR+%22muscle+bone%22%5BTitle%2FAbstract%5D+OR+%22gut+muscle%22%5BTitle%2FAbstract%5D+OR+%22brain+muscle%22%5BTitle%2FAbstract%5D+OR+%22single-cell+RNA%22%5BTitle%2FAbstract%5D+OR+%22snRNA%22%5BTitle%2FAbstract%5D+OR+%22scATAC%22%5BTitle%2FAbstract%5D+OR+%22spatial+transcriptomics%22%5BTitle%2FAbstract%5D+OR+%22proteomics%22%5BTitle%2FAbstract%5D+OR+%22phosphoproteomics%22%5BTitle%2FAbstract%5D+OR+%22metabolomics%22%5BTitle%2FAbstract%5D+OR+%22epigenomics%22%5BTitle%2FAbstract%5D+OR+%22CRISPR+screen%22%5BTitle%2FAbstract%5D%29 (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x1069d4b10>: Failed to resolve 'eutils.ncbi.nlm.nih.gov' ([Errno 8] nodename nor servname provided, or not known)\"))",
+        "biorxiv: HTTPSConnectionPool(host='api.biorxiv.org', port=443): Max retries exceeded with url: /details/biorxiv/2026-02-20/2026-02-26/0 (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x1069b5690>: Failed to resolve 'api.biorxiv.org' ([Errno 8] nodename nor servname provided, or not known)\"))",
+        "medrxiv: HTTPSConnectionPool(host='api.biorxiv.org', port=443): Max retries exceeded with url: /details/medrxiv/2026-02-20/2026-02-26/0 (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x1069dedd0>: Failed to resolve 'api.biorxiv.org' ([Errno 8] nodename nor servname provided, or not known)\"))",
+        "sportRxiv: HTTPSConnectionPool(host='api.crossref.org', port=443): Max retries exceeded with url: /works?filter=from-pub-date%3A2026-02-20%2Cuntil-pub-date%3A2026-02-26&query.container-title=sportRxiv&rows=120&sort=published&order=desc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x1069d4390>: Failed to resolve 'api.crossref.org' ([Errno 8] nodename nor servname provided, or not known)\"))"
+      ]
+    },
+    {
+      "timestamp_utc": "2026-02-26T11:13:26Z",
+      "window_start": "2026-02-20",
+      "window_end": "2026-02-26",
+      "query_set_hash": "f2d1db6d8e84eb7bdccbb98ef4ed33f4b0f3bbeb0bf27ebd48d4bbf369c7457a",
+      "counts_by_source": {
+        "PubMed": 0,
+        "biorxiv": 0,
+        "medrxiv": 0,
+        "sportRxiv": 0
+      },
+      "candidate_count": 0,
+      "included_count": 0,
+      "summarized_count": 0,
+      "failures": [
+        "PubMed: HTTPSConnectionPool(host='eutils.ncbi.nlm.nih.gov', port=443): Max retries exceeded with url: /entrez/eutils/esearch.fcgi?db=pubmed&retmode=json&retmax=120&sort=pub+date&datetype=pdat&mindate=2026-02-20&maxdate=2026-02-26&term=%28%22skeletal+muscle%22%5BTitle%2FAbstract%5D+OR+%22myofiber%22%5BTitle%2FAbstract%5D+OR+%22myonuclei%22%5BTitle%2FAbstract%5D+OR+%22satellite+cell%22%5BTitle%2FAbstract%5D+OR+%22myogenesis%22%5BTitle%2FAbstract%5D+OR+%22muscle+regeneration%22%5BTitle%2FAbstract%5D+OR+%22hypertrophy%22%5BTitle%2FAbstract%5D+OR+%22atrophy%22%5BTitle%2FAbstract%5D+OR+%22unloading%22%5BTitle%2FAbstract%5D+OR+%22exercise+adaptation%22%5BTitle%2FAbstract%5D+OR+%22endurance+training%22%5BTitle%2FAbstract%5D+OR+%22resistance+training%22%5BTitle%2FAbstract%5D+OR+%22proteostasis%22%5BTitle%2FAbstract%5D+OR+%22autophagy%22%5BTitle%2FAbstract%5D+OR+%22ubiquitin+proteasome%22%5BTitle%2FAbstract%5D+OR+%22mitochondria%22%5BTitle%2FAbstract%5D+OR+%22ER+stress%22%5BTitle%2FAbstract%5D+OR+%22oxidative+stress%22%5BTitle%2FAbstract%5D+OR+%22insulin+sensitivity%22%5BTitle%2FAbstract%5D+OR+%22lipid+handling%22%5BTitle%2FAbstract%5D+OR+%22glycogen%22%5BTitle%2FAbstract%5D+OR+%22NAD%2B%22%5BTitle%2FAbstract%5D+OR+%22sirtuin%22%5BTitle%2FAbstract%5D+OR+%22inflammation%22%5BTitle%2FAbstract%5D+OR+%22macrophage%22%5BTitle%2FAbstract%5D+OR+%22myokine%22%5BTitle%2FAbstract%5D+OR+%22extracellular+matrix%22%5BTitle%2FAbstract%5D+OR+%22fibrosis%22%5BTitle%2FAbstract%5D+OR+%22angiogenesis%22%5BTitle%2FAbstract%5D+OR+%22neuromuscular+junction%22%5BTitle%2FAbstract%5D+OR+%22motor+neuron%22%5BTitle%2FAbstract%5D+OR+%22aging%22%5BTitle%2FAbstract%5D+OR+%22sarcopenia%22%5BTitle%2FAbstract%5D+OR+%22cachexia%22%5BTitle%2FAbstract%5D+OR+%22muscular+dystrophy%22%5BTitle%2FAbstract%5D+OR+%22myopathy%22%5BTitle%2FAbstract%5D+OR+%22type+2+diabetes%22%5BTitle%2FAbstract%5D+OR+%22obesity%22%5BTitle%2FAbstract%5D+OR+%22muscle+adipose%22%5BTitle%2FAbstract%5D+OR+%22muscle+liver%22%5BTitle%2FAbstract%5D+OR+%22muscle+bone%22%5BTitle%2FAbstract%5D+OR+%22gut+muscle%22%5BTitle%2FAbstract%5D+OR+%22brain+muscle%22%5BTitle%2FAbstract%5D+OR+%22single-cell+RNA%22%5BTitle%2FAbstract%5D+OR+%22snRNA%22%5BTitle%2FAbstract%5D+OR+%22scATAC%22%5BTitle%2FAbstract%5D+OR+%22spatial+transcriptomics%22%5BTitle%2FAbstract%5D+OR+%22proteomics%22%5BTitle%2FAbstract%5D+OR+%22phosphoproteomics%22%5BTitle%2FAbstract%5D+OR+%22metabolomics%22%5BTitle%2FAbstract%5D+OR+%22epigenomics%22%5BTitle%2FAbstract%5D+OR+%22CRISPR+screen%22%5BTitle%2FAbstract%5D%29 (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x107041510>: Failed to resolve 'eutils.ncbi.nlm.nih.gov' ([Errno 8] nodename nor servname provided, or not known)\"))",
+        "biorxiv: HTTPSConnectionPool(host='api.biorxiv.org', port=443): Max retries exceeded with url: /details/biorxiv/2026-02-20/2026-02-26/0 (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x107040910>: Failed to resolve 'api.biorxiv.org' ([Errno 8] nodename nor servname provided, or not known)\"))",
+        "medrxiv: HTTPSConnectionPool(host='api.biorxiv.org', port=443): Max retries exceeded with url: /details/medrxiv/2026-02-20/2026-02-26/0 (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x10704b810>: Failed to resolve 'api.biorxiv.org' ([Errno 8] nodename nor servname provided, or not known)\"))",
+        "sportRxiv: HTTPSConnectionPool(host='api.crossref.org', port=443): Max retries exceeded with url: /works?filter=from-pub-date%3A2026-02-20%2Cuntil-pub-date%3A2026-02-26&query.container-title=sportRxiv&rows=120&sort=published&order=desc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x106f96b90>: Failed to resolve 'api.crossref.org' ([Errno 8] nodename nor servname provided, or not known)\"))"
+      ]
+    },
+    {
+      "timestamp_utc": "2026-02-26T11:13:56Z",
+      "window_start": "2026-02-20",
+      "window_end": "2026-02-26",
+      "query_set_hash": "511fa24a0782ee496217957bf0d4044c5d11df9cf97c664fd6b9a620017f683a",
+      "counts_by_source": {
+        "PubMed": 0,
+        "biorxiv": 0,
+        "medrxiv": 0,
+        "sportRxiv": 0
+      },
+      "candidate_count": 0,
+      "included_count": 0,
+      "summarized_count": 0,
+      "failures": [
+        "PubMed: HTTPSConnectionPool(host='eutils.ncbi.nlm.nih.gov', port=443): Max retries exceeded with url: /entrez/eutils/esearch.fcgi?db=pubmed&retmode=json&retmax=120&sort=pub+date&datetype=pdat&mindate=2026-02-20&maxdate=2026-02-26&term=%28%22skeletal+muscle%22%5BTitle%2FAbstract%5D+OR+%22myofiber%22%5BTitle%2FAbstract%5D+OR+...",
+        "biorxiv: HTTPSConnectionPool(host='api.biorxiv.org', port=443): Max retries exceeded with url: /details/biorxiv/2026-02-20/2026-02-26/0 (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x1038b9a90>: Failed to resolve 'api.biorxiv.org' ([Errno 8] nodename nor servname provided, or not known)\"))",
+        "medrxiv: HTTPSConnectionPool(host='api.biorxiv.org', port=443): Max retries exceeded with url: /details/medrxiv/2026-02-20/2026-02-26/0 (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x1038c3fd0>: Failed to resolve 'api.biorxiv.org' ([Errno 8] nodename nor servname provided, or not known)\"))",
+        "sportRxiv: HTTPSConnectionPool(host='api.crossref.org', port=443): Max retries exceeded with url: /works?filter=from-pub-date%3A2026-02-20%2Cuntil-pub-date%3A2026-02-26&query.container-title=sportRxiv&rows=120&sort=published&order=desc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x101186250>: ..."
+      ]
+    },
+    {
+      "timestamp_utc": "2026-02-26T11:14:18Z",
+      "window_start": "2026-02-20",
+      "window_end": "2026-02-26",
+      "query_set_hash": "e275cf1601f2623c1b54564bc27d394c917f0ee114c73b950de070543434a68c",
+      "counts_by_source": {
+        "PubMed": 0,
+        "biorxiv": 0,
+        "medrxiv": 0,
+        "sportRxiv": 0
+      },
+      "candidate_count": 0,
+      "included_count": 0,
+      "summarized_count": 0,
+      "failures": [
+        "PubMed: Failed to resolve 'eutils.ncbi.nlm.nih.gov' ([Errno 8] nodename nor servname provided, or not known)",
+        "biorxiv: Failed to resolve 'api.biorxiv.org' ([Errno 8] nodename nor servname provided, or not known)",
+        "medrxiv: Failed to resolve 'api.biorxiv.org' ([Errno 8] nodename nor servname provided, or not known)",
+        "sportRxiv: Failed to resolve 'api.crossref.org' ([Errno 8] nodename nor servname provided, or not known)"
+      ]
+    }
+  ]
+}
