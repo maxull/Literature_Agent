@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from datetime import datetime, timedelta
 import json
+from pathlib import Path
 
 from .cluster_chapters import build_cluster_chapters
 from .config import ScoutConfig
@@ -12,6 +13,29 @@ from .queries import query_set_hash
 from .sources import ArxivClient, HTTPConfig, PubMedClient, RxivClient, SportRxivClient
 from .state import append_run_log, load_seen, save_seen, update_seen
 from .summarizer import summarize_ranked_papers
+
+
+def _existing_digest_has_summaries(path: Path) -> bool:
+    if not path.exists():
+        return False
+
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return False
+
+    papers = payload.get("papers")
+    if isinstance(papers, list) and papers:
+        return True
+
+    coverage = payload.get("coverage")
+    if isinstance(coverage, dict):
+        summarized_count = coverage.get("summarized_count", 0)
+        try:
+            return int(summarized_count) > 0
+        except (TypeError, ValueError):
+            return False
+    return False
 
 
 def _deduplicate(papers: list[Paper]) -> list[Paper]:
@@ -131,7 +155,15 @@ def run_digest(config: ScoutConfig) -> PipelineOutput:
 
     config.output_dir.mkdir(parents=True, exist_ok=True)
     output_path = config.output_dir / f"weekly_muscle_digest_{run_date.isoformat()}.json"
-    output_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    preserved_existing_digest = False
+    # Guardrail: avoid replacing a usable same-day digest with an empty rerun.
+    if len(summaries) == 0 and _existing_digest_has_summaries(output_path):
+        preserved_existing_digest = True
+        failures.append(
+            "No new summaries in this run; preserved existing non-empty digest output."
+        )
+    else:
+        output_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
     seen_entries = [(summary.paper.identifier, summary.paper.title) for summary in summaries]
     updated_seen = update_seen(seen, seen_entries, seen_date=datetime.utcnow())
@@ -153,6 +185,7 @@ def run_digest(config: ScoutConfig) -> PipelineOutput:
         "candidate_count": len(deduped),
         "included_count": len(stage1),
         "summarized_count": len(summaries),
+        "preserved_existing_digest": preserved_existing_digest,
         "failures": failures,
     }
     append_run_log(config.run_log_file, run_entry)
