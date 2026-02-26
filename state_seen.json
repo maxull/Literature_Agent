@@ -1,5 +1,17 @@
 {
   "papers": {
+    "doi:10.1002/ccr3.72052": {
+      "last_seen_date": "2026-02-26",
+      "title": "Adult Survival in SMA Type 1: A 23\u2010Year Journey With Home Ventilation and Multidisciplinary Support."
+    },
+    "doi:10.1002/cmdc.202501033": {
+      "last_seen_date": "2026-02-26",
+      "title": "Decoding Class III Phosphatidylinositol 3-Kinase (PtdIns3K) Regulation: Mechanistic Insights and Therapeutic Opportunities."
+    },
+    "doi:10.1002/mco2.70630": {
+      "last_seen_date": "2026-02-26",
+      "title": "A Novel Peptide, HS1002, Enhances Antitumor Activity via Dual Targeting of the GnRH Receptor and Human Telomerase Reverse Transcriptase in Prostate Cancer Cells."
+    },
     "doi:10.1007/s00125-026-06681-x": {
       "last_seen_date": "2026-02-26",
       "title": "Type 1 diabetes, ageing and frailty: an underexplored intersection."
@@ -11,6 +23,10 @@
     "doi:10.1007/s00421-026-06169-x": {
       "last_seen_date": "2026-02-26",
       "title": "Strength gains and absence of hypertrophy and cross-education in knee extensors following short-term low-volume eccentric training in untrained young men."
+    },
+    "doi:10.1007/s11357-026-02121-1": {
+      "last_seen_date": "2026-02-26",
+      "title": "The mediating role of muscle strength and body composition on the association between movement behaviours and health-related quality of life in Spanish older adults: the IMPACT65\u2009+\u2009study."
     },
     "doi:10.1007/s11357-026-02123-z": {
       "last_seen_date": "2026-02-26",
@@ -32,13 +48,29 @@
       "last_seen_date": "2026-02-26",
       "title": "A systematic review of randomized controlled trials assessing the efficacy of negative pressure wound therapy in diabetic foot wounds."
     },
+    "doi:10.1016/j.bbr.2025.115918": {
+      "last_seen_date": "2026-02-26",
+      "title": "Electroacupuncture ameliorates mitochondrial dysfunction and alleviates traumatic brain injury via the PANX1/ATP/Ca"
+    },
     "doi:10.1016/j.bbrc.2026.153306": {
       "last_seen_date": "2026-02-26",
       "title": "In vitro investigation of miR-206-3p-loaded extracellular vesicles as modulators of A\u03b2-induced neurodegeneration."
     },
+    "doi:10.1016/j.bbrc.2026.153326": {
+      "last_seen_date": "2026-02-26",
+      "title": "Opposing effects of G\u03b112 and G\u03b113 loss on myotube size regulation via mTORC1 signaling."
+    },
+    "doi:10.1016/j.bbrc.2026.153332": {
+      "last_seen_date": "2026-02-26",
+      "title": "Nonsteroidal mineralocorticoid receptor antagonist finerenone ameliorates cardiac hypertrophy with increasing glucocorticoid signaling sensitivity."
+    },
     "doi:10.1016/j.bioactmat.2026.01.026": {
       "last_seen_date": "2026-02-26",
       "title": "Spatiotemporally engineered microneedle for microenvironment remodeling propels mucosal regeneration after tracheal mucosal injury."
+    },
+    "doi:10.1016/j.bioactmat.2026.01.045": {
+      "last_seen_date": "2026-02-26",
+      "title": "Cholesterol-driven mitochondrial rejuvenation by quercetin nanotherapeutics restores implant osseointegration in diabetes."
     },
     "doi:10.1016/j.bioactmat.2026.02.004": {
       "last_seen_date": "2026-02-26",
@@ -47,6 +79,14 @@
     "doi:10.1016/j.bioactmat.2026.02.016": {
       "last_seen_date": "2026-02-26",
       "title": "Energetic metabolism-regulatory glycopeptide hydrogel accelerates pressure ulcer wound repair."
+    },
+    "doi:10.1016/j.bioactmat.2026.02.023": {
+      "last_seen_date": "2026-02-26",
+      "title": "Innovative strategies for diabetic peripheral neuropathy: From clinical management to emerging bioengineering solutions."
+    },
+    "doi:10.1016/j.bioactmat.2026.02.026": {
+      "last_seen_date": "2026-02-26",
+      "title": "A continuous adhesion-enhanced osteogenic pathway in artificial scaffold drives cellular infiltration and condensed mineralization for rapid bone regeneration."
     },
     "doi:10.1016/j.cell.2025.12.003": {
       "last_seen_date": "2026-02-26",
@@ -59,6 +99,10 @@
     "doi:10.1016/j.celrep.2026.116992": {
       "last_seen_date": "2026-02-26",
       "title": "Liquid-liquid phase separation of EphB4 drives pulmonary hypertension via YAP activation."
+    },
+    "doi:10.1016/j.celrep.2026.117023": {
+      "last_seen_date": "2026-02-26",
+      "title": "Insulin and adipocyte IRF4 promote fat retention over muscle preservation during intermittent fasting in obesity."
     },
     "doi:10.1016/j.cels.2025.101488": {
       "last_seen_date": "2026-02-26",
@@ -76,6 +120,14 @@
       "last_seen_date": "2026-02-26",
       "title": "The transcriptional repressor Fli1 inhibits proteostasis during nutrient stress to limit NK cell persistence in solid tumors."
     },
+    "doi:10.1016/j.jobcr.2026.101418": {
+      "last_seen_date": "2026-02-26",
+      "title": "Optimizing graphene-enhanced polycaprolactone scaffolds for bone tissue engineering."
+    },
+    "doi:10.1016/j.metabol.2026.156565": {
+      "last_seen_date": "2026-02-26",
+      "title": "Corrigendum to \"Current and investigational medications for the treatment of sarcopenia\" [Metabolism 2023;149:155597]."
+    },
     "doi:10.1016/j.metabol.2026.156567": {
       "last_seen_date": "2026-02-26",
       "title": "Folic acid mitigation of alcohol-induced sarcopenia via gut-muscle axis modulation."
@@ -91,6 +143,10 @@
     "doi:10.1016/j.mito.2026.102136": {
       "last_seen_date": "2026-02-26",
       "title": "Phenotypic description and functional characterization of the mitochondrial disease associated with the SFXN4 gene."
+    },
+    "doi:10.1016/j.molcel.2026.01.012": {
+      "last_seen_date": "2026-02-26",
+      "title": "BRD4-mediated ER membrane contact creates functionally distinct mitochondrial subtypes."
     },
     "doi:10.1016/j.mtbio.2026.102929": {
       "last_seen_date": "2026-02-26",
@@ -112,9 +168,21 @@
       "last_seen_date": "2026-02-26",
       "title": "Ionizing radiation promotes lung injury by inducing ferroptosis-driven senescence in epithelial cells via NCOA4-mediated ferritinophagy."
     },
+    "doi:10.1016/j.scitotenv.2026.181524": {
+      "last_seen_date": "2026-02-26",
+      "title": "Life cycle assessment and costing of indoor VOC removal via electro-absorption and in situ electrochemical regeneration of activated carbon."
+    },
     "doi:10.1016/s2213-8587(25)00362-6": {
       "last_seen_date": "2026-02-26",
       "title": "Efficacy and safety of relacorilant for the treatment of patients with Cushing's syndrome (GRACE): a multicentre, phase 3, double-blind, placebo-controlled, randomised-withdrawal study."
+    },
+    "doi:10.1021/acs.chemrev.5c00533": {
+      "last_seen_date": "2026-02-26",
+      "title": "Anode-Free Batteries: Pioneering Energy Storage Revolution."
+    },
+    "doi:10.1021/acs.jafc.5c15340": {
+      "last_seen_date": "2026-02-26",
+      "title": "GABP\u03b1 Promotes Lipid Deposition and Endoplasmic Reticulum Stress by Transcriptional-Regulated"
     },
     "doi:10.1038/s41418-025-01607-3": {
       "last_seen_date": "2026-02-26",
@@ -224,9 +292,37 @@
       "last_seen_date": "2026-02-26",
       "title": "More than a blueprint: Developmental regulators secure the cellular environment for regeneration."
     },
+    "doi:10.1080/07853890.2026.2628363": {
+      "last_seen_date": "2026-02-26",
+      "title": "Response to letter regarding 'Bidirectional association of daily steps with sarcopenia: a longitudinal study'."
+    },
+    "doi:10.1080/07853890.2026.2635854": {
+      "last_seen_date": "2026-02-26",
+      "title": "Response to letter regarding: \"sarcopenia is a bad harbinger of cancer-related survival in rectal cancer\"."
+    },
+    "doi:10.1080/0886022x.2026.2624206": {
+      "last_seen_date": "2026-02-26",
+      "title": "Efficacy of nicotiflorin in ameliorating septic acute kidney injury: the role of PINK1/parkin in mitochondrial restoration and oxidative stress reduction."
+    },
+    "doi:10.1080/0886022x.2026.2629129": {
+      "last_seen_date": "2026-02-26",
+      "title": "Outcomes and predictors of kidney failure in elderly patients with biopsy-proven IgA nephropathy."
+    },
     "doi:10.1080/13510002.2026.2626181": {
       "last_seen_date": "2026-02-26",
       "title": "DRP1 depletion protects NK cells from hypoxia-induced dysfunction."
+    },
+    "doi:10.1080/15502783.2026.2629828": {
+      "last_seen_date": "2026-02-26",
+      "title": "International Society of Sports Nutrition position stand: effects of dietary antioxidants on exercise and sports performance."
+    },
+    "doi:10.1080/15502783.2026.2630487": {
+      "last_seen_date": "2026-02-26",
+      "title": "A comprehensive review of the physiology and evidence base to guide the use of ergogenic and medical supplements for enhanced cycling performance."
+    },
+    "doi:10.1080/15502783.2026.2632284": {
+      "last_seen_date": "2026-02-26",
+      "title": "Anti-inflammatory effects of nicotinamide mononucleotide (NMN) in human skeletal muscle after BFR-exercise."
     },
     "doi:10.1080/15548627.2025.2608387": {
       "last_seen_date": "2026-02-26",
@@ -235,6 +331,14 @@
     "doi:10.1080/15548627.2026.2614901": {
       "last_seen_date": "2026-02-26",
       "title": "Alphaherpesvirus UL48 homologs degrade STING1 by selective autophagy."
+    },
+    "doi:10.1080/15548627.2026.2624745": {
+      "last_seen_date": "2026-02-26",
+      "title": "Phase separation of OPTN initiates mitophagy to orchestrate craniofacial bone mineralization."
+    },
+    "doi:10.1080/15548627.2026.2626397": {
+      "last_seen_date": "2026-02-26",
+      "title": "TGFB-inducible VASN (vasorin) promotes lysosomal acidification."
     },
     "doi:10.1080/15548627.2026.2629288": {
       "last_seen_date": "2026-02-26",
@@ -264,21 +368,61 @@
       "last_seen_date": "2026-02-26",
       "title": "Autophagy as a therapeutic linchpin in metabolic Diseases and obesity-associated diabetes."
     },
+    "doi:10.1097/01.jaa.0000000000000319": {
+      "last_seen_date": "2026-02-26",
+      "title": "Ventriculoperitoneal shunt management in patients with normal pressure hydrocephalus and cerebral atrophy: A retrospective chart review."
+    },
+    "doi:10.1097/hep.0000000000000910": {
+      "last_seen_date": "2026-02-26",
+      "title": "Mitochondrial dynamics, quality control, and mtDNA in alcohol-associated liver disease and liver cancer."
+    },
     "doi:10.1101/2023.09.23.558792": {
       "last_seen_date": "2026-02-26",
       "title": "Caveolin-1 Regulates Neurogenesis and Learning and Memory by Modulation of Mitochondrial Dynamics"
+    },
+    "doi:10.1101/2024.02.26.582098": {
+      "last_seen_date": "2026-02-26",
+      "title": "Mitochondrial antigen-specific CD8\u207a T cells drive dopamine neuron neurodegeneration"
+    },
+    "doi:10.1101/2024.03.25.586547": {
+      "last_seen_date": "2026-02-26",
+      "title": "Capacity-Contribution Paradox: Fatty Acid Oxidation Compensates for Low Glucose-Derived Acetyl-CoA in Cancer."
     },
     "doi:10.1101/2024.06.17.598893": {
       "last_seen_date": "2026-02-26",
       "title": "The GTPase-activating protein CG42795 is a potent neuronal regulator of ageing in Drosophila melanogaster"
     },
+    "doi:10.1101/2024.08.05.606704": {
+      "last_seen_date": "2026-02-26",
+      "title": "Mfn2 promotes NCLX-mediated Ca2+ release from mitochondria"
+    },
     "doi:10.1101/2025.02.04.25321370": {
       "last_seen_date": "2026-02-26",
       "title": "Single-cell profiling reveals monocyte mitochondrial dysfunction in patients with cirrhosis progressing to acute-on-chronic liver failure"
     },
+    "doi:10.1101/2025.03.02.641101": {
+      "last_seen_date": "2026-02-26",
+      "title": "Asymmetric Histone Inheritance Regulates Olfactory Stem Cell Fates During Regeneration"
+    },
+    "doi:10.1101/2025.04.03.647039": {
+      "last_seen_date": "2026-02-26",
+      "title": "Membrane curvature regulates Ups1 dependent phosphatidic acid transfer across lipid bilayers"
+    },
+    "doi:10.1101/2025.05.04.651803": {
+      "last_seen_date": "2026-02-26",
+      "title": "Application of spatial transcriptomics across organoids: a high-resolution spatial whole-transcriptome benchmarking dataset"
+    },
+    "doi:10.1101/2025.05.12.653385": {
+      "last_seen_date": "2026-02-26",
+      "title": "WITHDRAWN: The effects of estrogen on cardiac progenitor cell-derived extracellular vesicles in enhancing cardiac protection through promoting tissue repair and regeneration"
+    },
     "doi:10.1101/2025.06.13.659526": {
       "last_seen_date": "2026-02-26",
       "title": "Iron deficiency drives metabolic adaptation of red pulp macrophages via ferroportin-SYK signaling and BCAA catabolism to enhance erythrophagocytosis"
+    },
+    "doi:10.1101/2025.06.18.660418": {
+      "last_seen_date": "2026-02-26",
+      "title": "Preserved cerebellar functions despite structural degeneration in older adults"
     },
     "doi:10.1101/2025.07.02.662518": {
       "last_seen_date": "2026-02-26",
@@ -288,6 +432,22 @@
       "last_seen_date": "2026-02-26",
       "title": "TREM2+ macrophages accumulate in alveoli of human pulmonary tuberculosis providing a permissive niche for bacterial growth"
     },
+    "doi:10.1101/2025.08.29.673146": {
+      "last_seen_date": "2026-02-26",
+      "title": "Electrophysiology in nanoscale compartments"
+    },
+    "doi:10.1101/2025.11.21.689671": {
+      "last_seen_date": "2026-02-26",
+      "title": "Rapid aging and disassembly of actin filaments from two evolutionary distant yeasts"
+    },
+    "doi:10.1101/2025.11.27.690935": {
+      "last_seen_date": "2026-02-26",
+      "title": "Differential chromatin accessibility between pre- and post-natal stages highlights putative causal regulatory variants in pig skeletal muscle"
+    },
+    "doi:10.1101/2025.11.29.691286": {
+      "last_seen_date": "2026-02-26",
+      "title": "Protein Compositional Ratio Representation (PCRR)Systematically Improves Human Disease Prediction"
+    },
     "doi:10.1113/ep093121": {
       "last_seen_date": "2026-02-26",
       "title": "Mitochondrial respiration and hydrogen peroxide production rate in right atrial tissues from obese diabetic patients."
@@ -295,6 +455,10 @@
     "doi:10.1113/ep093306": {
       "last_seen_date": "2026-02-26",
       "title": "Effects of bed rest and immobilization on intramuscular and intermuscular adipose tissue: A systematic review."
+    },
+    "doi:10.1113/ep093377": {
+      "last_seen_date": "2026-02-26",
+      "title": "Vascular and skeletal muscle oxidative capacity responses to continuous double and single leg cycling."
     },
     "doi:10.1113/ep093398": {
       "last_seen_date": "2026-02-26",
@@ -332,6 +496,10 @@
       "last_seen_date": "2026-02-26",
       "title": "Exercise Attenuates Polycystic Ovary Syndrome Development via Improved Mitochondrial Proteostasis."
     },
+    "doi:10.1152/ajpendo.00470.2025": {
+      "last_seen_date": "2026-02-26",
+      "title": "Colocalization and functional analyses identify"
+    },
     "doi:10.1152/ajpregu.00105.2025": {
       "last_seen_date": "2026-02-26",
       "title": "The impact of muscle inactivity and exercise training on histidine dipeptide homeostasis in rat skeletal muscle."
@@ -356,21 +524,45 @@
       "last_seen_date": "2026-02-26",
       "title": "Grhl3 Downregulation Facilitates ECM Adaptation for Fibroblast to iCM Commitment."
     },
+    "doi:10.1186/s13023-026-04227-3": {
+      "last_seen_date": "2026-02-26",
+      "title": "Swallowing development in infants and toddlers with spinal muscular atrophy following therapy compared to healthy controls: the prospective controlled DySMA trial."
+    },
+    "doi:10.1186/s13023-026-04265-x": {
+      "last_seen_date": "2026-02-26",
+      "title": "Gyrate atrophy of the choroid and retina: a tertiary center experience."
+    },
     "doi:10.1186/s13395-026-00413-w": {
       "last_seen_date": "2026-02-26",
       "title": "FGF2 rescues denervation-induced muscle atrophy in Ambystoma mexicanum."
+    },
+    "doi:10.1212/nxg.0000000000200351": {
+      "last_seen_date": "2026-02-26",
+      "title": "Untitled"
     },
     "doi:10.1212/nxi.0000000000200554": {
       "last_seen_date": "2026-02-26",
       "title": "Low Prevalence and Inconsistency of LRP4-IgG Detection in Suspected Myasthenia Gravis: A Multicenter CBA Comparison."
     },
+    "doi:10.1242/dev.204993": {
+      "last_seen_date": "2026-02-26",
+      "title": "Hb-EGF directs systemic muscle repair."
+    },
     "doi:10.1242/dev.205542": {
       "last_seen_date": "2026-02-26",
       "title": "Transitions in development - an interview with Soumyashree Das."
     },
+    "doi:10.1249/mss.0000000000003968": {
+      "last_seen_date": "2026-02-26",
+      "title": "Progressive Overload Affects the Magnitude of Muscle Hypertrophy."
+    },
     "doi:10.2337/db25-0567": {
       "last_seen_date": "2026-02-26",
       "title": "Exofacial Epitope-Specific Antibodies Detect GLUT4 Translocation in Adult Human, Rat, and Mouse Skeletal Muscle."
+    },
+    "doi:10.3892/ijmm.2026.5759": {
+      "last_seen_date": "2026-02-26",
+      "title": "Post\u2011translational modifications in diabetic kidney disease (Review)."
     },
     "doi:10.3892/ijmm.2026.5761": {
       "last_seen_date": "2026-02-26",
@@ -380,25 +572,65 @@
       "last_seen_date": "2026-02-26",
       "title": "The role and mechanism of IL\u201135 in myasthenia gravis (Review)."
     },
+    "doi:10.3892/mmr.2026.13826": {
+      "last_seen_date": "2026-02-26",
+      "title": "ULK1 activates NCOA4\u2011mediated ferritinophagy via the Beclin1/VPS34 complex in cardiomyocyte hypertrophy."
+    },
     "doi:10.4330/wjc.v18.i2.117277": {
       "last_seen_date": "2026-02-26",
       "title": "Mothers against decapentaplegic homolog 4 as a proteomic hub in vascular remodeling and residual cardiovascular risk."
+    },
+    "doi:10.64898/2026.01.30.702741": {
+      "last_seen_date": "2026-02-26",
+      "title": "Inferring Accumulation Times of Mitochondrial DNA Deletion Mutants from Cross-Sectional Single-Cell Data: Application to Tabula Muris Senis"
     },
     "doi:10.64898/2026.02.09.26345643": {
       "last_seen_date": "2026-02-26",
       "title": "Ultrasound Assessment of the Flexor Carpi Ulnaris for Early Detection of Muscle Atrophy in Critically Ill Patients: A Potential Indicator of ICU-Acquired Weakness"
     },
+    "doi:10.64898/2026.02.10.704981": {
+      "last_seen_date": "2026-02-26",
+      "title": "HSPB8 regulates CTP synthase filaments to couple nucleotide metabolism and autophagy in tumors"
+    },
     "doi:10.64898/2026.02.12.26346203": {
       "last_seen_date": "2026-02-26",
       "title": "A multi-layered approach to elucidate mechanisms of physical function in response to rehabilitation in heart failure with preserved ejection fraction"
+    },
+    "doi:10.64898/2026.02.13.26346243": {
+      "last_seen_date": "2026-02-26",
+      "title": "The Role of Network Connectivity and Transcriptomic Vulnerability in Shaping Grey Matter Atrophy in Multiple Sclerosis"
+    },
+    "doi:10.64898/2026.02.14.26346321": {
+      "last_seen_date": "2026-02-26",
+      "title": "Plasma Proteomic Analysis of APOE \u03f54 Homozygotes Identifies Preclinical Alzheimer's Disease Alterations Potentially Treatable with Semaglutide"
     },
     "doi:10.64898/2026.02.14.26346329": {
       "last_seen_date": "2026-02-26",
       "title": "Spatial transcriptomics reveals mechanism of autoimmunity driven by internalized autoantibodies"
     },
+    "doi:10.64898/2026.02.14.705898": {
+      "last_seen_date": "2026-02-26",
+      "title": "Loss of FRIENDLY MITOCHONDRIA (FMT) Restores Chloroplast Proteostasis via Inter-organelle Compensation"
+    },
     "doi:10.64898/2026.02.15.26346348": {
       "last_seen_date": "2026-02-26",
       "title": "A network-based atlas of human skeletal muscle aging"
+    },
+    "doi:10.64898/2026.02.16.26346437": {
+      "last_seen_date": "2026-02-26",
+      "title": "HEART RATE AND LEFT VENTRICULAR REMODELING AFTER REPAIRED COARCTATION OF THE AORTA: A CROSS-SECTIONAL STUDY"
+    },
+    "doi:10.64898/2026.02.18.26345928": {
+      "last_seen_date": "2026-02-26",
+      "title": "Implementation of a Comprehensive Telehealth Assessment Battery for Complex Neurogenetic Disease: An Observational Study of Rapid-Onset Dystonia-Parkinsonism"
+    },
+    "doi:10.64898/2026.02.20.26346739": {
+      "last_seen_date": "2026-02-26",
+      "title": "Carotid plaque dynamic contrast-enhanced magnetic resonance imaging normalised signal intensity reproducibly differs between plaque and vessel wall"
+    },
+    "doi:10.64898/2026.02.23.26345976": {
+      "last_seen_date": "2026-02-26",
+      "title": "RNA sequencing resolves cryptic pathogenic variants in mitochondrial disease"
     }
   }
 }

@@ -55,11 +55,15 @@ def build_digest_payload(
     start_date: date,
     end_date: date,
     source_names: list[str],
+    counts_by_source: dict[str, int],
+    included_count: int,
     candidate_count: int,
     summaries: list[PaperSummary],
     other_ranked: list[RankedPaper],
     failures: list[str],
     cluster_chapters: dict[str, str],
+    search_terms: list[str],
+    active_journal_tiers: list[str],
 ) -> dict:
     highlight_ids = {summary.paper.identifier for summary in summaries[:5]}
 
@@ -77,6 +81,7 @@ def build_digest_payload(
             method_index[keyword].append(
                 {
                     "identifier": summary.paper.identifier,
+                    "title": summary.paper.title,
                     "short_title": summary.short_title,
                     "cluster": summary.cluster,
                     "doi": summary.paper.doi or "",
@@ -108,10 +113,16 @@ def build_digest_payload(
             "window_start": start_date.isoformat(),
             "window_end": end_date.isoformat(),
             "sources_searched": source_names,
+            "counts_by_source": counts_by_source,
             "candidate_count": candidate_count,
+            "included_count": included_count,
             "summarized_count": len(summaries),
+            "excluded_after_relevance": max(0, candidate_count - included_count),
+            "not_summarized_after_ranking": max(0, included_count - len(summaries)),
             "failures": failures,
         },
+        "search_terms": sorted(set(search_terms)),
+        "active_journal_tiers": active_journal_tiers,
         "clusters": {
             cluster_name: {
                 "chapter_summary": cluster_chapters.get(cluster_name, "Summary unavailable."),

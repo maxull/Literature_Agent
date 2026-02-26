@@ -2,7 +2,7 @@ from datetime import date
 import unittest
 
 from literature_scout.digest_data import build_digest_payload
-from literature_scout.models import Paper, PaperSummary, RankedPaper
+from literature_scout.models import Paper, PaperSummary
 
 
 class DigestDataTests(unittest.TestCase):
@@ -40,11 +40,15 @@ class DigestDataTests(unittest.TestCase):
             start_date=date(2026, 2, 20),
             end_date=date(2026, 2, 26),
             source_names=["PubMed"],
+            counts_by_source={"PubMed": 1},
+            included_count=1,
             candidate_count=1,
             summaries=[summary],
             other_ranked=[],
             failures=[],
             cluster_chapters={"Mechanistic Signaling and Proteostasis": "chapter"},
+            search_terms=["skeletal muscle", "proteomics"],
+            active_journal_tiers=["tier_1"],
         )
 
         record = payload["papers"][0]

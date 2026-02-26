@@ -147,7 +147,7 @@ def _copy_weights(source: dict[str, float]) -> dict[str, float]:
 DEFAULT_CONFIG = ScoutConfig(
     days_back=7,
     max_candidates_per_source=240,
-    max_summaries_total=80,
+    max_summaries_total=0,
     include_keywords=[],
     exclude_keywords=[],
     preferred_topics=[],

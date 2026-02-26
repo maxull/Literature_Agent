@@ -1,55 +1,147 @@
-# Skeletal Muscle Literature Explorer
+# Muscle Litterature Explorer - by Max Ullrich
 
-This project builds weekly digest JSON files and serves them in an interactive Shiny app.
+This repository does three things:
+1. Searches literature sources and builds a digest JSON.
+2. Lets Codex enrich summaries using a local skill workflow.
+3. Serves an interactive Shiny app for exploration.
 
-Primary output:
+Primary output file:
 - `reports/weekly_digests/weekly_muscle_digest_YYYY-MM-DD.json`
 
-## Local Workflow (No API Integration)
-
-1. Generate digest JSON (draft summaries):
+## 1) One-Time Setup
 
 ```bash
+cd /Users/maxullrich/Documents/GitHub/Literature_Agent
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e .
+```
+
+## 2) Configure the Search
+
+Edit:
+- `/Users/maxullrich/Documents/GitHub/Literature_Agent/config.yaml`
+
+Important knobs:
+- `days_back`: how far back to search (default 7)
+- `max_candidates_per_source`: retrieval cap per source
+- `max_summaries_total`: summary cap; use `0` for unlimited
+- `include_keywords`: positive search terms
+- `exclude_keywords`: terms to filter out noisy papers
+- `preferred_topics`: ranking boost topics
+- `methods_keywords`: methods index vocabulary shown in the app
+- `active_journal_tiers`: which journal tiers are actively used
+
+### Change timeframe examples
+
+7 days:
+```yaml
+days_back: 7
+```
+
+14 days:
+```yaml
+days_back: 14
+```
+
+30 days:
+```yaml
+days_back: 30
+```
+
+### Edit search terms
+
+Add/remove terms in:
+- `include_keywords`
+- `exclude_keywords`
+- `preferred_topics`
+- `methods_keywords`
+
+## 3) Generate Digest JSON (Local)
+
+```bash
+cd /Users/maxullrich/Documents/GitHub/Literature_Agent
+source .venv/bin/activate
 python run_weekly_digest.py --config config.yaml
 ```
 
-2. Use Codex skill to enrich summaries in JSON (chapter-style prose):
-- Skill path in repo: `skills/muscle-digest-enricher`
-- Follow instructions in [`SKILL.md`](/Users/maxullrich/Documents/GitHub/Literature_Agent/skills/muscle-digest-enricher/SKILL.md)
+This writes/updates:
+- `reports/weekly_digests/weekly_muscle_digest_YYYY-MM-DD.json`
 
-3. Validate enriched JSON:
+## 4) Enrich Summaries with Codex Skill (No API Required)
 
-```bash
-python skills/muscle-digest-enricher/scripts/locate_latest_digest.py
-python skills/muscle-digest-enricher/scripts/validate_digest_enrichment.py <path-to-json>
+Skill path:
+- `/Users/maxullrich/Documents/GitHub/Literature_Agent/skills/muscle-digest-enricher/SKILL.md`
+
+In Codex chat, paste this prompt:
+
+```text
+Use /Users/maxullrich/Documents/GitHub/Literature_Agent/skills/muscle-digest-enricher/SKILL.md as the active instructions for this task.
+
+Find the latest digest JSON in /Users/maxullrich/Documents/GitHub/Literature_Agent/reports/weekly_digests/.
+Edit that JSON in place:
+- Rewrite every clusters.<cluster>.chapter_summary in chapter-style prose anchored to the AMPK example style/length.
+- Rewrite every papers[*].discussion_summary in the same style.
+- Preserve all fields and keep DOI-first links (doi_url must be https://doi.org/<doi> when doi exists).
+
+After editing, run:
+python /Users/maxullrich/Documents/GitHub/Literature_Agent/skills/muscle-digest-enricher/scripts/validate_digest_enrichment.py <path-to-json>
+
+If validation fails, fix and rerun until it passes.
 ```
 
-4. Run Shiny app:
+## 5) Validate Enriched Digest
+
+Locate latest digest:
 
 ```bash
+python /Users/maxullrich/Documents/GitHub/Literature_Agent/skills/muscle-digest-enricher/scripts/locate_latest_digest.py
+```
+
+Validate:
+
+```bash
+python /Users/maxullrich/Documents/GitHub/Literature_Agent/skills/muscle-digest-enricher/scripts/validate_digest_enrichment.py /Users/maxullrich/Documents/GitHub/Literature_Agent/reports/weekly_digests/weekly_muscle_digest_YYYY-MM-DD.json
+```
+
+## 6) Launch the Shiny App
+
+```bash
+cd /Users/maxullrich/Documents/GitHub/Literature_Agent
+source .venv/bin/activate
 shiny run --reload /Users/maxullrich/Documents/GitHub/Literature_Agent/shiny_app/app.py
 ```
 
-## Shiny App Features
+Open:
+- `http://127.0.0.1:8000`
 
-- Separate tab for each thematic cluster.
-- Cluster chapter summary in example-anchored chapter style (~300-word narrative) at top of each tab.
-- Highlighted papers with discussion-style summaries.
-- DOI-first links.
-- Methods keyword search across all clusters and a dedicated Methods Index tab.
+Stop app:
+- `Ctrl + C` in the terminal running Shiny.
 
-## Skill Package
+## 7) Optional: Run via GitHub Actions
 
-Skill folder:
-- [`skills/muscle-digest-enricher/SKILL.md`](/Users/maxullrich/Documents/GitHub/Literature_Agent/skills/muscle-digest-enricher/SKILL.md)
+Workflow file:
+- `/Users/maxullrich/Documents/GitHub/Literature_Agent/.github/workflows/run_digest.yml`
 
-Helper scripts:
-- [`locate_latest_digest.py`](/Users/maxullrich/Documents/GitHub/Literature_Agent/skills/muscle-digest-enricher/scripts/locate_latest_digest.py)
-- [`validate_digest_enrichment.py`](/Users/maxullrich/Documents/GitHub/Literature_Agent/skills/muscle-digest-enricher/scripts/validate_digest_enrichment.py)
+Steps:
+1. GitHub -> Actions -> `Run Muscle Digest`
+2. Click `Run workflow`
+3. Set `days_back` if needed (e.g., 14 or 30)
+4. Run
+5. Pull local updates:
 
-## GitHub Actions
+```bash
+git pull
+```
 
-Workflow:
-- [`run_digest.yml`](/Users/maxullrich/Documents/GitHub/Literature_Agent/.github/workflows/run_digest.yml)
+## 8) Typical End-to-End Local Commands
 
-Manual run writes/commits updated digest JSON, run log, and state files.
+```bash
+cd /Users/maxullrich/Documents/GitHub/Literature_Agent
+source .venv/bin/activate
+python run_weekly_digest.py --config config.yaml
+python skills/muscle-digest-enricher/scripts/locate_latest_digest.py
+# Use Codex skill prompt to rewrite summaries here
+python skills/muscle-digest-enricher/scripts/validate_digest_enrichment.py /Users/maxullrich/Documents/GitHub/Literature_Agent/reports/weekly_digests/weekly_muscle_digest_YYYY-MM-DD.json
+shiny run --reload /Users/maxullrich/Documents/GitHub/Literature_Agent/shiny_app/app.py
+```

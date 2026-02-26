@@ -9,7 +9,7 @@ from .config import ScoutConfig
 from .digest_data import build_digest_payload
 from .filtering import rank_papers, split_ranked, stage1_relevance_filter
 from .models import Paper, PipelineOutput
-from .queries import query_set_hash
+from .queries import BASE_THEME_GROUPS, query_set_hash
 from .sources import ArxivClient, HTTPConfig, PubMedClient, RxivClient, SportRxivClient
 from .state import append_run_log, load_seen, save_seen, update_seen
 from .summarizer import summarize_ranked_papers
@@ -127,7 +127,12 @@ def run_digest(config: ScoutConfig) -> PipelineOutput:
 
     stage1 = stage1_relevance_filter(unseen, config)
     ranked = rank_papers(stage1, config)
-    summary_cap = config.max_summaries_total if config.exhaustive_output else min(25, config.max_summaries_total)
+    if config.max_summaries_total <= 0:
+        summary_cap = len(ranked)
+    elif config.exhaustive_output:
+        summary_cap = config.max_summaries_total
+    else:
+        summary_cap = min(25, config.max_summaries_total)
     top_ranked, remainder = split_ranked(ranked, max_summaries=summary_cap)
     summaries = summarize_ranked_papers(top_ranked, config=config, warnings=failures)
     cluster_chapters = build_cluster_chapters(summaries=summaries, config=config, warnings=failures)
@@ -146,11 +151,18 @@ def run_digest(config: ScoutConfig) -> PipelineOutput:
         start_date=start_date,
         end_date=end_date,
         source_names=[client.source_name for client in clients],
+        counts_by_source=counts_by_source,
+        included_count=len(stage1),
         candidate_count=len(deduped),
         summaries=summaries,
         other_ranked=remainder,
         failures=failures,
         cluster_chapters=cluster_chapters,
+        search_terms=[
+            *[term for group in BASE_THEME_GROUPS.values() for term in group],
+            *config.include_keywords,
+        ],
+        active_journal_tiers=config.active_journal_tiers,
     )
 
     config.output_dir.mkdir(parents=True, exist_ok=True)

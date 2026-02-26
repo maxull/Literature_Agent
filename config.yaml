@@ -1,6 +1,6 @@
-days_back: 7
+days_back: 14
 max_candidates_per_source: 300
-max_summaries_total: 100
+max_summaries_total: 0
 include_general_pubmed: true
 exhaustive_output: true
 other_potential_limit: 300

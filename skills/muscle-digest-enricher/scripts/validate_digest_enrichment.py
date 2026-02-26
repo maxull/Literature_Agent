@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 
 
-SENTENCE_SPLIT = re.compile(r"(?<=[.!?])\\s+")
+SENTENCE_SPLIT = re.compile(r"(?<=[.!?])\s+")
 WORD_RE = re.compile(r"[A-Za-z0-9][A-Za-z0-9+/'().-]*")
 
 # Style anchor from user-provided target example (~300 words, chapter-like narrative).
