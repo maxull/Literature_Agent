@@ -5,7 +5,7 @@ include_general_pubmed: true
 exhaustive_output: true
 other_potential_limit: 300
 
-use_llm_summaries: true
+use_llm_summaries: false
 llm_model: gpt-4o-mini
 llm_api_base: https://api.openai.com/v1
 llm_temperature: 0.2

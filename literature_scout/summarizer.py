@@ -107,6 +107,10 @@ def _heuristic_summary(
         "This study is relevant to skeletal muscle regulation through within-cell control, cell-to-cell crosstalk within "
         "muscle tissue, and/or broader inter-organ signaling under health or disease stress."
     )
+    discussion_text = (
+        f"{known_before_text} {novel_text} {implications_text} "
+        "Taken together, the study updates current understanding by integrating mechanistic context with the newly reported evidence."
+    )
 
     if ranked_item.reasons:
         implications_text += f" Ranking signals for prioritization: {', '.join(ranked_item.reasons)}."
@@ -123,6 +127,7 @@ def _heuristic_summary(
         caveats=_as_list_field(caveats_text, "Caveats unavailable."),
         relevance=relevance_text,
         evidence_class=_evidence_class(abstract),
+        discussion_summary=discussion_text,
         cluster=cluster,
         methods_keywords=methods_keywords,
         key_visual_label=visual_label,
@@ -160,6 +165,11 @@ def summarize_ranked_papers(
 
             if llm_payload:
                 evidence_class = str(llm_payload.get("evidence_class", "mixed")).strip() or "mixed"
+                discussion_summary = (
+                    str(llm_payload.get("discussion_summary", "")).strip()
+                    or str(llm_payload.get("novel_value", "")).strip()
+                    or "Discussion summary unavailable."
+                )
                 summaries.append(
                     PaperSummary(
                         paper=paper,
@@ -196,6 +206,7 @@ def summarize_ranked_papers(
                         relevance=str(llm_payload.get("relevance", "")).strip()
                         or "Relevance to muscle regulation could not be fully established from available metadata.",
                         evidence_class=evidence_class,
+                        discussion_summary=discussion_summary,
                         cluster=cluster,
                         methods_keywords=methods_keywords,
                         key_visual_label=str(llm_payload.get("key_visual_label", visual_label)).strip()

@@ -21,7 +21,7 @@ def main() -> int:
     config = load_config(args.config)
     output = run_digest(config)
 
-    print(f"Report written: {output.report_path}")
+    print(f"Digest written: {output.report_path}")
     print(f"Sources searched: {', '.join(output.sources_searched)}")
     print(f"Candidates: {output.candidate_count}")
     print(f"Included: {output.included_count}")

@@ -1,0 +1,4 @@
+version: 1
+display_name: Muscle Digest Enricher
+short_description: Rewrite digest JSON into chapter-style cluster and paper summaries for the Shiny app.
+default_prompt: Enrich the latest weekly muscle digest JSON with chapter-style cluster summaries and paper-level discussion summaries, then validate it.

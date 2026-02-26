@@ -1,12 +1,14 @@
 from __future__ import annotations
 
 from datetime import datetime, timedelta
+import json
 
+from .cluster_chapters import build_cluster_chapters
 from .config import ScoutConfig
+from .digest_data import build_digest_payload
 from .filtering import rank_papers, split_ranked, stage1_relevance_filter
 from .models import Paper, PipelineOutput
 from .queries import query_set_hash
-from .report import render_markdown
 from .sources import ArxivClient, HTTPConfig, PubMedClient, RxivClient, SportRxivClient
 from .state import append_run_log, load_seen, save_seen, update_seen
 from .summarizer import summarize_ranked_papers
@@ -104,6 +106,7 @@ def run_digest(config: ScoutConfig) -> PipelineOutput:
     summary_cap = config.max_summaries_total if config.exhaustive_output else min(25, config.max_summaries_total)
     top_ranked, remainder = split_ranked(ranked, max_summaries=summary_cap)
     summaries = summarize_ranked_papers(top_ranked, config=config, warnings=failures)
+    cluster_chapters = build_cluster_chapters(summaries=summaries, config=config, warnings=failures)
 
     if config.other_potential_limit > 0:
         remainder = remainder[: config.other_potential_limit]
@@ -114,20 +117,21 @@ def run_digest(config: ScoutConfig) -> PipelineOutput:
     if quality_issues:
         failures.append("quality checks: " + " | ".join(quality_issues))
 
-    markdown = render_markdown(
+    payload = build_digest_payload(
         run_date=run_date,
         start_date=start_date,
         end_date=end_date,
         source_names=[client.source_name for client in clients],
         candidate_count=len(deduped),
-        summarized=summaries,
+        summaries=summaries,
         other_ranked=remainder,
         failures=failures,
+        cluster_chapters=cluster_chapters,
     )
 
     config.output_dir.mkdir(parents=True, exist_ok=True)
-    report_path = config.output_dir / f"weekly_muscle_digest_{run_date.isoformat()}.md"
-    report_path.write_text(markdown, encoding="utf-8")
+    output_path = config.output_dir / f"weekly_muscle_digest_{run_date.isoformat()}.json"
+    output_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
     seen_entries = [(summary.paper.identifier, summary.paper.title) for summary in summaries]
     updated_seen = update_seen(seen, seen_entries, seen_date=datetime.utcnow())
@@ -154,7 +158,7 @@ def run_digest(config: ScoutConfig) -> PipelineOutput:
     append_run_log(config.run_log_file, run_entry)
 
     return PipelineOutput(
-        report_path=str(report_path),
+        report_path=str(output_path),
         summarized_count=len(summaries),
         candidate_count=len(deduped),
         included_count=len(stage1),

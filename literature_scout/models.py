@@ -77,6 +77,7 @@ class PaperSummary:
     caveats: list[str]
     relevance: str
     evidence_class: str
+    discussion_summary: str = ""
     cluster: str = "Skeletal Muscle Homeostasis and Adaptation"
     methods_keywords: list[str] = field(default_factory=list)
     key_visual_label: str = "Source page"

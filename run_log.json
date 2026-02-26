@@ -189,6 +189,62 @@
       "included_count": 61,
       "summarized_count": 61,
       "failures": []
+    },
+    {
+      "timestamp_utc": "2026-02-26T13:01:41Z",
+      "window_start": "2026-02-20",
+      "window_end": "2026-02-26",
+      "query_set_hash": "d714f720282e3d886775c2b375adabdfead595f4a6f6cf6731b59f8a2891437d",
+      "active_journal_tiers": [
+        "tier_1",
+        "tier_2",
+        "tier_3"
+      ],
+      "exhaustive_output": true,
+      "use_llm_summaries": true,
+      "counts_by_source": {
+        "PubMed": 0,
+        "biorxiv": 0,
+        "medrxiv": 0,
+        "sportRxiv": 0
+      },
+      "candidate_count": 0,
+      "included_count": 0,
+      "summarized_count": 0,
+      "failures": [
+        "PubMed: Failed to resolve 'eutils.ncbi.nlm.nih.gov' ([Errno 8] nodename nor servname provided, or not known)",
+        "biorxiv: Failed to resolve 'api.biorxiv.org' ([Errno 8] nodename nor servname provided, or not known)",
+        "medrxiv: Failed to resolve 'api.biorxiv.org' ([Errno 8] nodename nor servname provided, or not known)",
+        "sportRxiv: Failed to resolve 'api.crossref.org' ([Errno 8] nodename nor servname provided, or not known)"
+      ]
+    },
+    {
+      "timestamp_utc": "2026-02-26T13:22:14Z",
+      "window_start": "2026-02-20",
+      "window_end": "2026-02-26",
+      "query_set_hash": "d714f720282e3d886775c2b375adabdfead595f4a6f6cf6731b59f8a2891437d",
+      "active_journal_tiers": [
+        "tier_1",
+        "tier_2",
+        "tier_3"
+      ],
+      "exhaustive_output": true,
+      "use_llm_summaries": false,
+      "counts_by_source": {
+        "PubMed": 0,
+        "biorxiv": 0,
+        "medrxiv": 0,
+        "sportRxiv": 0
+      },
+      "candidate_count": 0,
+      "included_count": 0,
+      "summarized_count": 0,
+      "failures": [
+        "PubMed: Failed to resolve 'eutils.ncbi.nlm.nih.gov' ([Errno 8] nodename nor servname provided, or not known)",
+        "biorxiv: Failed to resolve 'api.biorxiv.org' ([Errno 8] nodename nor servname provided, or not known)",
+        "medrxiv: Failed to resolve 'api.biorxiv.org' ([Errno 8] nodename nor servname provided, or not known)",
+        "sportRxiv: Failed to resolve 'api.crossref.org' ([Errno 8] nodename nor servname provided, or not known)"
+      ]
     }
   ]
 }

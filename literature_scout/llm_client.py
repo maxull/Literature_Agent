@@ -7,7 +7,7 @@ from typing import Any
 import requests
 
 from .config import ScoutConfig
-from .models import Paper
+from .models import Paper, PaperSummary
 
 
 def _extract_json_payload(text: str) -> dict[str, Any] | None:
@@ -67,6 +67,7 @@ def summarize_with_llm(
         "required_fields": [
             "short_title",
             "core_question",
+            "discussion_summary",
             "key_findings",
             "mechanism",
             "known_before",
@@ -80,6 +81,7 @@ def summarize_with_llm(
         "field_constraints": {
             "short_title": "<= 95 characters",
             "core_question": "1-2 sentences",
+            "discussion_summary": "chapter-style narrative (~300 words) with background science then integration of new findings",
             "key_findings": "one paragraph, evidence-aware, no bullets",
             "mechanism": "one paragraph, clearly separate supported vs speculative",
             "known_before": "one paragraph, cautious where uncertain",
@@ -141,3 +143,66 @@ def summarize_with_llm(
     if not parsed:
         return None
     return parsed
+
+
+def summarize_cluster_with_llm(
+    cluster: str,
+    items: list[PaperSummary],
+    config: ScoutConfig,
+) -> str | None:
+    api_key = llm_api_key()
+    if not config.use_llm_summaries or not api_key or not items:
+        return None
+
+    endpoint = config.llm_api_base.rstrip("/") + "/chat/completions"
+    payload_items = []
+    for item in items[:12]:
+        payload_items.append(
+            {
+                "title": item.paper.title,
+                "venue": item.paper.venue,
+                "year": item.paper.year,
+                "evidence_class": item.evidence_class,
+                "methods_keywords": item.methods_keywords,
+                "discussion_summary": item.discussion_summary,
+            }
+        )
+
+    system_prompt = (
+        "You are drafting a scientific chapter update for skeletal muscle researchers. "
+        "Write a coherent, factual chapter-style summary (~300 words), contextualizing prior knowledge and integrating new findings. "
+        "Do not invent facts not present in the provided inputs."
+    )
+    user_prompt = {
+        "cluster": cluster,
+        "instruction": (
+            "Provide a concise chapter-style summary with background context followed by integration of the new papers."
+        ),
+        "papers": payload_items,
+    }
+
+    body = {
+        "model": config.llm_model,
+        "temperature": config.llm_temperature,
+        "messages": [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": json.dumps(user_prompt, ensure_ascii=True)},
+        ],
+    }
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json",
+    }
+
+    response = requests.post(
+        endpoint,
+        headers=headers,
+        json=body,
+        timeout=config.llm_timeout_seconds,
+    )
+    response.raise_for_status()
+    content = (
+        response.json().get("choices", [{}])[0].get("message", {}).get("content", "")
+    )
+    cleaned = content.strip()
+    return cleaned or None
