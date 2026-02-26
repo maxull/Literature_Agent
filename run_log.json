@@ -268,6 +268,29 @@
       "included_count": 0,
       "summarized_count": 0,
       "failures": []
+    },
+    {
+      "timestamp_utc": "2026-02-26T13:43:32Z",
+      "window_start": "2026-02-20",
+      "window_end": "2026-02-26",
+      "query_set_hash": "d714f720282e3d886775c2b375adabdfead595f4a6f6cf6731b59f8a2891437d",
+      "active_journal_tiers": [
+        "tier_1",
+        "tier_2",
+        "tier_3"
+      ],
+      "exhaustive_output": true,
+      "use_llm_summaries": false,
+      "counts_by_source": {
+        "PubMed": 173,
+        "biorxiv": 300,
+        "medrxiv": 274,
+        "sportRxiv": 0
+      },
+      "candidate_count": 727,
+      "included_count": 0,
+      "summarized_count": 0,
+      "failures": []
     }
   ]
 }
